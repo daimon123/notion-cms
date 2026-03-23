@@ -1,0 +1,19 @@
+{
+  "name": "my-starter-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vue.js + Node.js 풀스택 웹 개발 스타터킷",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "node scripts/kill-ports.js && concurrently --prefix-colors \"cyan,green\" --names \"FRONT,BACK\" \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "test": "npm run test --workspace=frontend && npm run test --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

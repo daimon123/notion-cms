@@ -1,0 +1,32 @@
+/* Vuetify 컴포넌트 스타일 오버라이드 */
+
+/* v-btn 커스터마이징 */
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-weight: 500 !important;
+}
+
+/* v-card 기본 스타일 */
+.v-card {
+  border-radius: 12px !important;
+}
+
+/* v-text-field 커스터마이징 */
+.v-text-field .v-field {
+  border-radius: 8px !important;
+}
+
+/* 다크모드 배경색 조정 */
+.v-theme--dark .v-app {
+  background-color: #121212;
+}
+
+/* 사이드바 스타일 */
+.v-navigation-drawer {
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.v-theme--dark .v-navigation-drawer {
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
