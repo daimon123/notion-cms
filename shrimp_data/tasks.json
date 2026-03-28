@@ -1,0 +1,656 @@
+{
+  "tasks": [
+    {
+      "id": "dad97b51-0629-44c8-8dac-ff3462102ca7",
+      "name": "Phase 1-1: Next.js 15 프로젝트 생성 및 기본 설정",
+      "description": "프로젝트 루트에 Next.js 15 App Router 프로젝트를 생성하고 TypeScript, Tailwind CSS 기본 설정을 완료한다. 기존 frontend/, backend/ 디렉토리와 충돌 없이 루트에 직접 구성.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-03-28T06:18:46.636Z",
+      "updatedAt": "2026-03-28T06:18:46.636Z",
+      "relatedFiles": [
+        {
+          "path": "package.json",
+          "type": "CREATE",
+          "description": "Next.js 15 의존성 및 스크립트"
+        },
+        {
+          "path": "tsconfig.json",
+          "type": "CREATE",
+          "description": "TypeScript strict 설정"
+        },
+        {
+          "path": "tailwind.config.ts",
+          "type": "CREATE",
+          "description": "Tailwind CSS 설정"
+        },
+        {
+          "path": "next.config.ts",
+          "type": "CREATE",
+          "description": "Next.js 설정"
+        },
+        {
+          "path": ".gitignore",
+          "type": "CREATE",
+          "description": ".env.local 포함 필수"
+        }
+      ],
+      "implementationGuide": "1. npx create-next-app@latest . 으로 현재 디렉토리에 생성 (TypeScript, Tailwind CSS, App Router, src/ 미사용 선택)\n2. tsconfig.json strict: true 확인\n3. tailwind.config.ts content 경로 확인 (app/, components/ 포함)\n4. package.json scripts 확인 (dev, build, lint)\n5. .gitignore에 .env.local 포함 여부 확인",
+      "verificationCriteria": "npm run dev 실행 시 에러 없이 localhost:3000 접근 가능. npm run build 타입 오류 없음. tsconfig.json strict: true 설정 확인.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "2901a609-a1cf-401a-aa1c-c193b6475db4",
+      "name": "Phase 1-2: shadcn/ui 초기화 및 Lucide React 설치",
+      "description": "shadcn/ui를 초기화하고 프로젝트에서 사용할 기본 컴포넌트를 설치한다. Lucide React 아이콘 라이브러리도 설치한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "dad97b51-0629-44c8-8dac-ff3462102ca7"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.636Z",
+      "updatedAt": "2026-03-28T06:18:46.636Z",
+      "relatedFiles": [
+        {
+          "path": "components.json",
+          "type": "CREATE",
+          "description": "shadcn/ui 설정 파일"
+        },
+        {
+          "path": "components/ui/",
+          "type": "CREATE",
+          "description": "shadcn/ui 컴포넌트 자동 생성 디렉토리"
+        },
+        {
+          "path": "lib/utils.ts",
+          "type": "CREATE",
+          "description": "cn() 유틸리티 함수"
+        }
+      ],
+      "implementationGuide": "1. npx shadcn@latest init 실행 (style: default, base color 선택, CSS variables 사용)\n2. 기본 컴포넌트 설치: npx shadcn@latest add button card badge separator\n3. npm install lucide-react\n4. components/ui/ 디렉토리 자동 생성 확인\n5. lib/utils.ts (cn 유틸) 자동 생성 확인",
+      "verificationCriteria": "components/ui/ 디렉토리에 button.tsx, card.tsx, badge.tsx 파일 존재. lib/utils.ts의 cn() 함수 사용 가능. Lucide React import 가능.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "9203c16f-4dfe-4c97-8576-0a6a485cd9c3",
+      "name": "Phase 1-3: Notion API 연동 환경 구축",
+      "description": "@notionhq/client 패키지를 설치하고 환경 변수 파일을 설정한다. .env.example 파일을 생성하여 필요한 환경 변수 구조를 문서화한다.",
+      "notes": "실제 NOTION_API_KEY 값은 절대 코드에 하드코딩 금지. .env.local은 git 커밋 금지.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "dad97b51-0629-44c8-8dac-ff3462102ca7"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.636Z",
+      "updatedAt": "2026-03-28T06:18:46.636Z",
+      "relatedFiles": [
+        {
+          "path": ".env.local",
+          "type": "CREATE",
+          "description": "실제 환경 변수 (git 제외)"
+        },
+        {
+          "path": ".env.example",
+          "type": "CREATE",
+          "description": "환경 변수 템플릿 (값 없음)"
+        },
+        {
+          "path": "next.config.ts",
+          "type": "TO_MODIFY",
+          "description": "Notion 이미지 도메인 허용"
+        }
+      ],
+      "implementationGuide": "1. npm install @notionhq/client\n2. .env.local 파일 생성 (NOTION_API_KEY, NOTION_DATABASE_ID 변수명만, 실제 값은 사용자가 직접 입력)\n3. .env.example 파일 생성 (변수명만, 값 없음)\n4. .gitignore에 .env.local 포함 확인\n5. next.config.ts에 images.remotePatterns에 Notion S3 도메인 추가 (prod.files.notion-static.com, s3.us-west-2.amazonaws.com)",
+      "verificationCriteria": ".env.example 파일에 NOTION_API_KEY=, NOTION_DATABASE_ID= 존재. .env.local이 .gitignore에 포함됨. next.config.ts에 Notion S3 이미지 도메인 등록.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "cb82c6c3-e1f8-4558-9edd-0b126f2072ea",
+      "name": "Phase 1-4: app/ 라우트 골격 구조 생성",
+      "description": "Next.js App Router 기반의 전체 라우트 골격을 생성한다. 각 페이지는 빈 상태로 두되, 라우팅이 정상 동작하도록 기본 구조를 갖춘다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "dad97b51-0629-44c8-8dac-ff3462102ca7"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.636Z",
+      "updatedAt": "2026-03-28T06:18:46.636Z",
+      "relatedFiles": [
+        {
+          "path": "app/layout.tsx",
+          "type": "CREATE",
+          "description": "루트 레이아웃"
+        },
+        {
+          "path": "app/page.tsx",
+          "type": "CREATE",
+          "description": "홈 페이지 (/)"
+        },
+        {
+          "path": "app/blog/page.tsx",
+          "type": "CREATE",
+          "description": "블로그 목록 (/blog)"
+        },
+        {
+          "path": "app/blog/[slug]/page.tsx",
+          "type": "CREATE",
+          "description": "블로그 상세 (/blog/[slug])"
+        },
+        {
+          "path": "app/blog/category/[name]/page.tsx",
+          "type": "CREATE",
+          "description": "카테고리 목록"
+        },
+        {
+          "path": "app/about/page.tsx",
+          "type": "CREATE",
+          "description": "소개 페이지 (/about)"
+        },
+        {
+          "path": "app/not-found.tsx",
+          "type": "CREATE",
+          "description": "404 페이지"
+        }
+      ],
+      "implementationGuide": "1. app/layout.tsx - 루트 레이아웃 (html, body, 기본 font 설정)\n2. app/page.tsx - 홈 페이지 플레이스홀더\n3. app/blog/page.tsx - 블로그 목록 플레이스홀더\n4. app/blog/[slug]/page.tsx - 블로그 상세 플레이스홀더\n5. app/blog/category/[name]/page.tsx - 카테고리 목록 플레이스홀더\n6. app/about/page.tsx - 소개 페이지 플레이스홀더\n7. app/not-found.tsx - 404 페이지\n8. 각 page.tsx는 export default function으로 컴포넌트명과 h1 태그만 포함",
+      "verificationCriteria": "npm run dev 후 /, /blog, /blog/test-slug, /blog/category/dev, /about 모두 200 응답 반환. /없는-페이지 접근 시 404 페이지 표시.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "1c7d7c8b-1f0d-4d03-be8c-2a44720347a8",
+      "name": "Phase 2-1: 공통 타입 정의 (types/notion.ts, types/blog.ts)",
+      "description": "Notion API 응답 원시 타입과 앱 레벨 비즈니스 타입을 분리하여 정의한다. any 타입 사용 금지, strict TypeScript 준수.",
+      "notes": "Notion API 공식 타입(@notionhq/client의 타입)을 import하여 확장하거나 래핑하는 방식 권장",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "cb82c6c3-e1f8-4558-9edd-0b126f2072ea"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.636Z",
+      "updatedAt": "2026-03-28T06:18:46.636Z",
+      "relatedFiles": [
+        {
+          "path": "types/notion.ts",
+          "type": "CREATE",
+          "description": "Notion API 응답 원시 타입"
+        },
+        {
+          "path": "types/blog.ts",
+          "type": "CREATE",
+          "description": "앱 레벨 비즈니스 타입"
+        },
+        {
+          "path": "docs/PRD.md",
+          "type": "REFERENCE",
+          "description": "Notion 데이터베이스 스키마 참고"
+        }
+      ],
+      "implementationGuide": "types/notion.ts: NotionPage, NotionBlock, NotionRichText, NotionProperty 등 API 응답 구조 타입\ntypes/blog.ts: Post { id, title, slug, category, tags, publishedAt, status }, PostMeta, Category { name, slug }, Tag { name }, NotionBlockType 유니온 타입\n변환 함수 시그니처 정의 (실제 구현은 Phase 2-2에서): notionPageToPost(page: NotionPage): Post",
+      "verificationCriteria": "npm run build 타입 오류 없음. types/에서 import한 타입이 any 없이 동작. Post 타입에 id, title, slug, category, tags, publishedAt, status 필드 포함.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "5d7c0292-f3d3-418a-ab11-f948483315a4",
+      "name": "Phase 2-2: Notion API 공통 함수 구현",
+      "description": "Notion 클라이언트 싱글턴과 데이터 조회 함수를 구현한다. 모든 함수는 서버 사이드 전용이며 캐싱 전략을 적용한다.",
+      "notes": "NEXT_PUBLIC_ 접두사 절대 금지. 캐싱 없는 API 호출 금지. 이미지 블록은 url 만료 주의 (unoptimized 속성 대비).",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "1c7d7c8b-1f0d-4d03-be8c-2a44720347a8"
+        },
+        {
+          "taskId": "9203c16f-4dfe-4c97-8576-0a6a485cd9c3"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.637Z",
+      "updatedAt": "2026-03-28T06:18:46.637Z",
+      "relatedFiles": [
+        {
+          "path": "lib/notion/client.ts",
+          "type": "CREATE",
+          "description": "Notion 클라이언트 싱글턴"
+        },
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "CREATE",
+          "description": "글 목록/상세/콘텐츠 조회 함수"
+        },
+        {
+          "path": "types/notion.ts",
+          "type": "DEPENDENCY",
+          "description": "Notion 응답 타입"
+        },
+        {
+          "path": "types/blog.ts",
+          "type": "DEPENDENCY",
+          "description": "앱 레벨 타입"
+        },
+        {
+          "path": ".env.local",
+          "type": "DEPENDENCY",
+          "description": "환경 변수"
+        }
+      ],
+      "implementationGuide": "lib/notion/client.ts: new Client({ auth: process.env.NOTION_API_KEY }) 싱글턴\nlib/notion/posts.ts:\n- fetchPosts(): Status='발행됨' 필터, next: { revalidate: 60 } 적용\n- fetchPostBySlug(slug: string): title 기반 조회\n- fetchPostContent(pageId: string): blocks.children.list\n- fetchCategories(): 데이터베이스 속성에서 카테고리 select 옵션 추출\n각 함수 반환값은 types/blog.ts 타입 사용, 변환 로직 포함",
+      "verificationCriteria": "fetchPosts() 호출 시 Status='발행됨' 글 목록 반환. fetchPostContent() 호출 시 블록 배열 반환. TypeScript 오류 없음. NOTION_API_KEY가 서버에서만 사용됨.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "9cbad739-ceb4-4f3f-a125-f15dcee914da",
+      "name": "Phase 2-3: 공통 레이아웃 컴포넌트 구현 (Header, Footer, PostCard)",
+      "description": "모든 페이지에서 공유하는 Header, Footer와 블로그 글 목록에서 사용할 PostCard 컴포넌트를 구현한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "1c7d7c8b-1f0d-4d03-be8c-2a44720347a8"
+        },
+        {
+          "taskId": "2901a609-a1cf-401a-aa1c-c193b6475db4"
+        },
+        {
+          "taskId": "cb82c6c3-e1f8-4558-9edd-0b126f2072ea"
+        }
+      ],
+      "createdAt": "2026-03-28T06:18:46.637Z",
+      "updatedAt": "2026-03-28T06:18:46.637Z",
+      "relatedFiles": [
+        {
+          "path": "components/layout/Header.tsx",
+          "type": "CREATE",
+          "description": "글로벌 네비게이션 헤더"
+        },
+        {
+          "path": "components/layout/Footer.tsx",
+          "type": "CREATE",
+          "description": "글로벌 푸터"
+        },
+        {
+          "path": "components/blog/PostCard.tsx",
+          "type": "CREATE",
+          "description": "블로그 글 카드 컴포넌트"
+        },
+        {
+          "path": "app/layout.tsx",
+          "type": "TO_MODIFY",
+          "description": "Header, Footer 추가"
+        },
+        {
+          "path": "types/blog.ts",
+          "type": "DEPENDENCY",
+          "description": "Post 타입 참조"
+        },
+        {
+          "path": "components/ui/card.tsx",
+          "type": "DEPENDENCY",
+          "description": "shadcn/ui Card"
+        }
+      ],
+      "implementationGuide": "components/layout/Header.tsx: 네비게이션 링크 (홈, 블로그, 소개), 반응형 (모바일 햄버거 메뉴 또는 간단 링크), Next.js Link 사용\ncomponents/layout/Footer.tsx: 저작권 텍스트, 링크\ncomponents/blog/PostCard.tsx: Post 타입 props, 제목/날짜/카테고리/태그 표시, shadcn/ui Card 컴포넌트 활용, Next.js Link로 /blog/[slug] 연결\napp/layout.tsx에 Header, Footer 추가",
+      "verificationCriteria": "모든 페이지에서 Header, Footer 렌더링 확인. PostCard에 mock Post 데이터 전달 시 정상 렌더링. 모바일(375px), 데스크톱(1280px)에서 레이아웃 정상 동작.",
+      "analysisResult": "Notion CMS 블로그 + 포트폴리오 사이트 개발. Next.js 15 App Router, TypeScript strict, Tailwind CSS, shadcn/ui, @notionhq/client 기술 스택. ROADMAP.md Phase 순서 준수 필수. 루트 디렉토리에 Next.js 앱 구성 (app/, components/, lib/, types/). frontend/, backend/ 디렉토리는 이전 스타터킷 코드로 무시. Notion API 키는 서버 사이드 전용."
+    },
+    {
+      "id": "83dc7302-5846-4db5-8970-3a21c41e4942",
+      "name": "Phase 3-1: Notion 콘텐츠 블록 렌더링 컴포넌트",
+      "description": "NotionRenderer 진입점 컴포넌트와 블록 타입별 렌더링 컴포넌트를 구현한다. 미지원 블록은 콘솔 경고 후 null 반환.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "5d7c0292-f3d3-418a-ab11-f948483315a4"
+        },
+        {
+          "taskId": "9cbad739-ceb4-4f3f-a125-f15dcee914da"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "components/notion/NotionRenderer.tsx",
+          "type": "CREATE",
+          "description": "블록 배열 렌더링 진입점"
+        },
+        {
+          "path": "components/notion/",
+          "type": "CREATE",
+          "description": "블록 타입별 컴포넌트 디렉토리"
+        },
+        {
+          "path": "types/blog.ts",
+          "type": "DEPENDENCY",
+          "description": "NotionBlock 타입"
+        }
+      ],
+      "implementationGuide": "components/notion/NotionRenderer.tsx: blocks 배열을 받아 타입별 컴포넌트로 분기\n지원 블록 타입별 컴포넌트:\n- paragraph, heading_1/2/3, bulleted_list_item, numbered_list_item\n- code (언어 하이라이팅: npm install react-syntax-highlighter)\n- image (Next.js Image, unoptimized 속성 필수)\n- divider, quote, callout\n미지원 타입: console.warn 후 null 반환",
+      "verificationCriteria": "paragraph, heading, code, image, divider 블록이 올바르게 렌더링됨. 미지원 블록 타입 전달 시 콘솔 경고 출력 후 null 반환. TypeScript 오류 없음.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "835930f2-4d99-4162-82b3-be5b3c3ca916",
+      "name": "Phase 3-2: 블로그 글 목록 페이지 (/blog)",
+      "description": "fetchPosts()로 Notion 데이터베이스의 발행된 글 목록을 조회하여 PostCard 그리드로 렌더링한다. 로딩 상태와 빈 목록 상태를 처리한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "83dc7302-5846-4db5-8970-3a21c41e4942"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/blog/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "글 목록 페이지"
+        },
+        {
+          "path": "app/blog/loading.tsx",
+          "type": "CREATE",
+          "description": "로딩 상태 스켈레톤"
+        },
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "DEPENDENCY",
+          "description": "fetchPosts 함수"
+        },
+        {
+          "path": "components/blog/PostCard.tsx",
+          "type": "DEPENDENCY",
+          "description": "글 카드 컴포넌트"
+        }
+      ],
+      "implementationGuide": "app/blog/page.tsx: 서버 컴포넌트, fetchPosts() 호출\nPostCard 그리드 (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3)\napp/blog/loading.tsx: 스켈레톤 UI\n빈 목록 시 안내 메시지 표시\n글 없을 때: '아직 발행된 글이 없습니다' 메시지",
+      "verificationCriteria": "/blog 접근 시 Notion 발행 글 목록이 카드 형태로 표시됨. 로딩 중 스켈레톤 UI 표시. 글 없을 때 안내 메시지 표시. 반응형 그리드 동작.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "6897027e-196e-4645-8584-aaddff7def5b",
+      "name": "Phase 3-3: 블로그 글 상세 페이지 (/blog/[slug])",
+      "description": "개별 블로그 글의 전체 내용을 렌더링한다. generateStaticParams로 빌드 타임 사전 생성, 미존재 slug는 notFound() 처리.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "835930f2-4d99-4162-82b3-be5b3c3ca916"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/blog/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "글 상세 페이지"
+        },
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "DEPENDENCY",
+          "description": "fetchPostBySlug, fetchPostContent"
+        },
+        {
+          "path": "components/notion/NotionRenderer.tsx",
+          "type": "DEPENDENCY",
+          "description": "블록 렌더링"
+        }
+      ],
+      "implementationGuide": "app/blog/[slug]/page.tsx:\n- generateStaticParams(): fetchPosts()로 전체 slug 목록 반환\n- generateMetadata(): 글 제목으로 메타태그 생성 (Phase 4 SEO 준비)\n- fetchPostBySlug(slug) + fetchPostContent(pageId) 호출\n- 없는 slug: notFound() 호출\n- 제목, 발행일, 카테고리, 태그 헤더 렌더링\n- NotionRenderer로 본문 렌더링\n- 이전/다음 글 네비게이션",
+      "verificationCriteria": "/blog/[slug] 접근 시 전체 글 내용 렌더링. 없는 slug 접근 시 404 페이지. generateStaticParams로 빌드 타임 사전 생성. 이전/다음 네비게이션 동작.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "1642f772-7f99-4c0d-bfde-439c1f0a6a4f",
+      "name": "Phase 3-4: 홈 페이지 (/) 구현",
+      "description": "최근 발행된 글 목록(최대 9개)을 카드 형태로 표시하고, 자기소개 섹션과 카테고리 빠른 이동 링크를 구현한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "6897027e-196e-4645-8584-aaddff7def5b"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "홈 페이지"
+        },
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "DEPENDENCY",
+          "description": "fetchPosts, fetchCategories"
+        },
+        {
+          "path": "components/blog/PostCard.tsx",
+          "type": "DEPENDENCY",
+          "description": "글 카드"
+        }
+      ],
+      "implementationGuide": "app/page.tsx: 서버 컴포넌트\n- fetchPosts()로 최신 글 최대 9개 조회 (slice(0, 9))\n- 자기소개 Hero 섹션 (이름, 간단한 소개)\n- PostCard 그리드로 최근 글 표시\n- fetchCategories()로 카테고리 링크 목록\n- 전체 블로그 보기 링크 (/blog)",
+      "verificationCriteria": "/ 접근 시 최근 글 최대 9개 카드 표시. 자기소개 섹션 존재. 카테고리 링크 클릭 시 /blog/category/[name]으로 이동. '전체 보기' 링크 /blog로 이동.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "e431c504-f2cd-4e67-aa58-21b256225a4e",
+      "name": "Phase 4-1: 카테고리 필터링 기능",
+      "description": "/blog 페이지 상단 카테고리 필터 탭과 /blog/category/[name] 카테고리별 글 목록 페이지를 구현한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "1642f772-7f99-4c0d-bfde-439c1f0a6a4f"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/blog/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "카테고리 필터 탭 추가"
+        },
+        {
+          "path": "app/blog/category/[name]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "카테고리별 글 목록"
+        },
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "TO_MODIFY",
+          "description": "fetchPostsByCategory 함수 추가"
+        }
+      ],
+      "implementationGuide": "lib/notion/posts.ts에 fetchPostsByCategory(category: string) 함수 추가\napp/blog/page.tsx: 카테고리 필터 탭 추가 (shadcn/ui Tabs 컴포넌트)\napp/blog/category/[name]/page.tsx: fetchPostsByCategory() 호출, 카테고리명 헤더 표시\ngenerateStaticParams로 카테고리 페이지 사전 생성",
+      "verificationCriteria": "카테고리 탭 클릭 시 해당 카테고리 글만 표시. /blog/category/개발 직접 접근 시 정상 동작. 카테고리 없는 경우 전체 글 표시.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "b55d9f64-6f4a-45ea-afd9-185233006601",
+      "name": "Phase 4-2: 클라이언트 사이드 검색 기능",
+      "description": "/blog 페이지에 제목 기반 클라이언트 사이드 검색 기능을 추가한다. Notion API 전문 검색 미지원으로 클라이언트 필터링 방식 채택.",
+      "notes": "Notion API 서버 검색 호출 금지. 클라이언트 필터링만 사용.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "e431c504-f2cd-4e67-aa58-21b256225a4e"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "components/blog/BlogSearch.tsx",
+          "type": "CREATE",
+          "description": "검색 입력 + 필터링 클라이언트 컴포넌트"
+        },
+        {
+          "path": "app/blog/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "BlogSearch 컴포넌트 통합"
+        }
+      ],
+      "implementationGuide": "components/blog/BlogSearch.tsx: 'use client', useState로 검색어 관리\n- input onChange로 실시간 필터링\n- posts 배열에서 title.toLowerCase().includes(query) 필터\n- 결과 없을 때 '검색 결과가 없습니다' 메시지\napp/blog/page.tsx에서 전체 posts를 클라이언트 컴포넌트에 전달",
+      "verificationCriteria": "검색창에 키워드 입력 시 실시간으로 글 목록 필터링. 검색 결과 없을 때 안내 메시지. 검색어 지우면 전체 목록 복원.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "1f8cd8b7-bb57-49b0-b204-90efca1a8f1a",
+      "name": "Phase 4-3: SEO 최적화 (generateMetadata, sitemap, robots)",
+      "description": "각 글 페이지에 동적 메타태그를 생성하고, 사이트맵과 robots.txt를 자동 생성한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b55d9f64-6f4a-45ea-afd9-185233006601"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/blog/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "generateMetadata 추가"
+        },
+        {
+          "path": "app/sitemap.ts",
+          "type": "CREATE",
+          "description": "사이트맵 자동 생성"
+        },
+        {
+          "path": "app/robots.ts",
+          "type": "CREATE",
+          "description": "robots.txt 생성"
+        },
+        {
+          "path": "app/layout.tsx",
+          "type": "TO_MODIFY",
+          "description": "기본 메타태그 추가"
+        }
+      ],
+      "implementationGuide": "app/blog/[slug]/page.tsx: generateMetadata({ params }) — title, description, openGraph, twitter 태그\napp/sitemap.ts: fetchPosts()로 전체 slug 기반 URL 목록 생성\napp/robots.ts: Allow: /, Disallow: /api/\napp/layout.tsx: 기본 메타태그 (사이트명, 기본 OG 이미지)",
+      "verificationCriteria": "각 글 페이지의 <title>이 글 제목으로 설정됨. OG 태그 확인. /sitemap.xml 접근 시 URL 목록 반환. /robots.txt 접근 시 정상 응답.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "50d83f5c-c583-46c1-b004-07e48eb19ac7",
+      "name": "Phase 4-4: 소개 페이지 (/about) 구현",
+      "description": "프로필, 기술 스택 배지, 이력 타임라인, 연락처 링크를 포함한 소개 페이지를 구현한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "1f8cd8b7-bb57-49b0-b204-90efca1a8f1a"
+        }
+      ],
+      "createdAt": "2026-03-28T06:19:41.598Z",
+      "updatedAt": "2026-03-28T06:19:41.598Z",
+      "relatedFiles": [
+        {
+          "path": "app/about/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "소개 페이지"
+        },
+        {
+          "path": "components/about/Timeline.tsx",
+          "type": "CREATE",
+          "description": "이력 타임라인 컴포넌트"
+        }
+      ],
+      "implementationGuide": "app/about/page.tsx: 서버 컴포넌트\n- 프로필 이미지 (Next.js Image) + 자기소개 텍스트\n- 기술 스택 배지 목록 (shadcn/ui Badge)\n- 이력 타임라인 컴포넌트 (학력, 경력, 프로젝트)\n- GitHub, 이메일 등 연락처 링크 (Lucide React 아이콘)\ncomponents/about/Timeline.tsx: 타임라인 UI 컴포넌트",
+      "verificationCriteria": "/about 접근 시 소개, 기술 스택 배지, 타임라인, 연락처 링크 표시. 반응형 레이아웃 동작.",
+      "analysisResult": "Notion CMS 블로그 Phase 3~4 태스크. Phase 2 완료 후 진행."
+    },
+    {
+      "id": "ca9c7162-3651-4e1c-8694-3e84a424a993",
+      "name": "Phase 5-1: 성능 최적화 (ISR, 이미지, generateStaticParams)",
+      "description": "ISR revalidate 값 조정, Next.js Image 최적화, generateStaticParams 최종 점검으로 LCP 2.5초 이하를 달성한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "50d83f5c-c583-46c1-b004-07e48eb19ac7"
+        }
+      ],
+      "createdAt": "2026-03-28T06:20:12.511Z",
+      "updatedAt": "2026-03-28T06:20:12.511Z",
+      "relatedFiles": [
+        {
+          "path": "lib/notion/posts.ts",
+          "type": "TO_MODIFY",
+          "description": "revalidate 설정 최종 점검"
+        },
+        {
+          "path": "app/blog/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "generateStaticParams 점검"
+        },
+        {
+          "path": "next.config.ts",
+          "type": "TO_MODIFY",
+          "description": "이미지 최적화 설정"
+        }
+      ],
+      "implementationGuide": "1. lib/notion/posts.ts 각 함수에 next: { revalidate: 60 } 일괄 적용 확인\n2. app/blog/[slug]/page.tsx generateStaticParams 최종 검토\n3. Notion S3 이미지 URL 만료 대응: Image 컴포넌트 unoptimized 속성 또는 next.config.ts remotePatterns 설정 최종 확인\n4. next.config.ts에 이미지 최적화 설정 점검\n5. Lighthouse 실행하여 LCP 측정",
+      "verificationCriteria": "Lighthouse 성능 점수 80점 이상. LCP 2.5초 이하. 모든 Notion API 호출에 revalidate 적용 확인. 이미지 로드 오류 없음.",
+      "analysisResult": "Notion CMS 블로그 Phase 5 태스크. Phase 4 완료 후 최적화 및 배포."
+    },
+    {
+      "id": "a6836a3e-20ad-43bb-9526-e3a9fb847d9f",
+      "name": "Phase 5-2: 반응형 디자인 개선 및 접근성 점검",
+      "description": "모바일(375px), 태블릿(768px), 데스크톱(1280px) 전 구간 레이아웃 점검과 WCAG 2.1 AA 수준의 접근성을 확인한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ca9c7162-3651-4e1c-8694-3e84a424a993"
+        }
+      ],
+      "createdAt": "2026-03-28T06:20:12.511Z",
+      "updatedAt": "2026-03-28T06:20:12.511Z",
+      "relatedFiles": [
+        {
+          "path": "app/",
+          "type": "TO_MODIFY",
+          "description": "전체 페이지 접근성 수정"
+        },
+        {
+          "path": "components/",
+          "type": "TO_MODIFY",
+          "description": "컴포넌트 반응형/접근성 수정"
+        }
+      ],
+      "implementationGuide": "1. 전체 페이지 3개 브레이크포인트(375/768/1280px) 레이아웃 점검\n2. 키보드 네비게이션(Tab, Enter) 모든 인터랙티브 요소 동작 확인\n3. 색상 대비 비율 4.5:1 이상 확인 (텍스트)\n4. img/Image 컴포넌트 alt 텍스트 누락 점검\n5. 시맨틱 HTML (main, nav, article, header, footer) 사용 확인\n6. 발견된 문제 수정",
+      "verificationCriteria": "375px/768px/1280px에서 레이아웃 깨짐 없음. 키보드만으로 모든 링크/버튼 접근 가능. Lighthouse 접근성 점수 90점 이상.",
+      "analysisResult": "Notion CMS 블로그 Phase 5 태스크. Phase 4 완료 후 최적화 및 배포."
+    },
+    {
+      "id": "f7480523-4671-4722-bfaa-f64d7de5a85c",
+      "name": "Phase 5-3: Vercel 배포 설정 및 최종 검증",
+      "description": "GitHub 리포지토리와 Vercel을 연결하고 환경 변수를 설정하여 프로덕션 배포를 완료한다.",
+      "notes": "Vercel 환경 변수에 NEXT_PUBLIC_ 접두사 절대 사용 금지. 배포 전 npm run build 로컬 성공 필수.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a6836a3e-20ad-43bb-9526-e3a9fb847d9f"
+        }
+      ],
+      "createdAt": "2026-03-28T06:20:12.511Z",
+      "updatedAt": "2026-03-28T06:20:12.511Z",
+      "relatedFiles": [
+        {
+          "path": "next.config.ts",
+          "type": "REFERENCE",
+          "description": "빌드 설정 최종 확인"
+        },
+        {
+          "path": ".env.example",
+          "type": "REFERENCE",
+          "description": "필요한 환경 변수 목록"
+        }
+      ],
+      "implementationGuide": "1. npm run build — 빌드 오류 없음 확인 필수\n2. Vercel 프로젝트 생성 및 GitHub 리포지토리 연결\n3. Vercel 환경 변수 설정: NOTION_API_KEY, NOTION_DATABASE_ID\n4. 프로덕션 배포 실행\n5. 배포 후 주요 라우트 동작 검증: /, /blog, /blog/[slug], /about\n6. Notion API 키 클라이언트 노출 여부 브라우저 DevTools로 확인",
+      "verificationCriteria": "Vercel 프로덕션 URL에서 전체 기능 정상 동작. Notion API 키가 브라우저에 노출되지 않음. npm run build 오류 없음. Lighthouse 성능 80점 이상.",
+      "analysisResult": "Notion CMS 블로그 Phase 5 태스크. Phase 4 완료 후 최적화 및 배포."
+    }
+  ]
+}
